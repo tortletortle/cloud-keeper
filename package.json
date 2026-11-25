@@ -1,0 +1,12 @@
+{
+  "name": "cloud-keeper",
+  "version": "0.12.0",
+  "private": true,
+  "description": "云朵饲养员",
+  "scripts": {
+    "lint": "node scripts/lint.cjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
