@@ -1,0 +1,37 @@
+name: Bug report
+description: Report a reproducible gameplay or engineering defect.
+title: "[Bug] "
+labels: [bug, needs-triage]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      placeholder: "1. Open the ranch...\n2. Click..."
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Game version
+      placeholder: V0.12.1
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser / OS
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Console errors, screenshots, or save sample
+      description: Remove personal data before attaching a save.

@@ -20,7 +20,7 @@ const nodeGlobals = Object.fromEntries([
 
 module.exports = [
   {
-    ignores: ['dist/**', '.eslint-tmp/**', 'node_modules/**']
+    ignores: ['dist/**', 'node_modules/**', 'coverage/**']
   },
   {
     files: ['**/*.js', '**/*.cjs'],
