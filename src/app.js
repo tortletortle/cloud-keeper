@@ -42,7 +42,7 @@ function save(next = s, replace = false) {
     if (foot.textContent !== message) foot.textContent = message;
     return storageOK;
 }
-function log(msg){s.journal.unshift(msg);s.journal=s.journal.slice(0,40)}function toast(msg){$('toast').textContent=msg;$('toast').hidden=false;clearScheduledTimeout(toastTimer);toastTimer=scheduleTimeout(()=>$('toast').hidden=true,2300)}function tone(freq=570){if(!s.sound)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume().catch(()=>{});const t=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(freq*1.27,t+.14);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.065,t+.025);g.gain.exponentialRampToValueAtTime(.001,t+.22);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+.23)}catch(e){}}
+function log(msg){s.journal.unshift(msg);s.journal=s.journal.slice(0,40)}function toast(msg){$('toast').textContent=msg;$('toast').hidden=false;clearScheduledTimeout(toastTimer);toastTimer=scheduleTimeout(()=>$('toast').hidden=true,2300)}function tone(freq=570){if(!s.sound)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume().catch(()=>{});const t=ac.currentTime,o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(freq*1.27,t+.14);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.065,t+.025);g.gain.exponentialRampToValueAtTime(.001,t+.22);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+.23)}catch(e){/* Audio is optional when the browser does not support it. */}}
 function selected(){return s.clouds.find(c=>c.id===s.selected)||s.clouds[0]}function select(id){s.selected=id;render();save()}
 const emotionText={sleep:'睡得香甜',thirsty:'有点口渴',angry:'气鼓鼓',sad:'需要安慰',tired:'有点困了',joy:'超级开心',shy:'有点害羞',calm:'悠闲自在'};function moodLabel(c){return emotionText[B.emotion(c)]}
 function appearance(c){return c.type}
@@ -232,7 +232,7 @@ function openSettings() {
         openSettings();
     }));
     let repairBackup = null;
-    try { repairBackup = localStorage.getItem(KEY + '-unreadable-backup'); } catch {}
+    try { repairBackup = localStorage.getItem(KEY + '-unreadable-backup'); } catch { /* Storage may be unavailable under browser privacy policies. */ }
     const backupAction = repairBackup ? btn('下载修复前存档', () => downloadSave(repairBackup, 'CloudRanch-pre-repair-backup.json')) : null;
     wrap.append(audio, p(storageOK ? '进度自动保存在本浏览器，可以导出备份。' : '本地自动保存不可用，可以导出备份。'),
         btn('导出存档', exportRanch), btn('导入存档', () => openImport(false)), ...(backupAction ? [backupAction] : []),
